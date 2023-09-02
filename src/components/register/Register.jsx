@@ -15,6 +15,7 @@ const Register = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    
     setState((prevState) => {
       return {
         ...prevState,
@@ -23,9 +24,17 @@ const Register = () => {
     });
   };
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    // TODO
+  const handleFormSubmit = (event) => {    
+    event.preventDefault();    
+            
+    if(state.name === "" || state.email === "" ||  state.password === "") {
+      setErrorMsg("All the fields are required.")      
+      return
+    }else{
+      setErrorMsg('')
+      setSuccessMsg("You have successfully registered.") 
+    }      
+    
   };
 
   return (
@@ -46,6 +55,7 @@ const Register = () => {
               name="name"
               value={state.name}
               onChange={handleInputChange}
+              
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="email">
@@ -56,6 +66,7 @@ const Register = () => {
               name="email"
               value={state.email}
               onChange={handleInputChange}
+              
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="password">
@@ -66,6 +77,7 @@ const Register = () => {
               name="password"
               value={state.password}
               onChange={handleInputChange}
+              
             />
           </Form.Group>
           <Form.Group>
